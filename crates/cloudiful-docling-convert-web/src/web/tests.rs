@@ -124,6 +124,7 @@ async fn spawn_download_server(
 #[tokio::test]
 async fn test_upload_valid_pdf() {
     let state = create_test_state();
+    let task_state = state.clone();
     let app: Router = create_router(state);
 
     let pdf_content = b"%PDF-1.4\n1 0 obj\nendobj\ntrailer\nstartxref\n0\n%%EOF";
@@ -132,9 +133,12 @@ async fn test_upload_valid_pdf() {
 
     assert_eq!(response.status(), StatusCode::OK);
     let json = response_json(response).await;
+    let task_id = json["task_id"].as_str().unwrap();
+    let task = task_state.get_task(task_id).await.unwrap();
     assert_eq!(json["filename"], "test.pdf");
     assert_eq!(json["message"], "File uploaded successfully");
     assert!(!json["task_id"].as_str().unwrap_or_default().is_empty());
+    assert_eq!(task.total_chunks, 1);
 }
 
 #[tokio::test]

@@ -10,7 +10,8 @@ use tokio_util::io::ReaderStream;
 use tower_http::services::ServeDir;
 
 use super::conversion::{
-    process_file_conversion, process_url_conversion, spawn_conversion_task, total_chunks_for_input,
+    estimated_total_chunks_for_input, process_file_conversion, process_url_conversion,
+    spawn_conversion_task,
 };
 use super::state::{AppState, ConversionTask, TaskConfig, TaskStatus};
 use super::support::{output_content_type, resolve_input_kind, sanitize_filename};
@@ -64,11 +65,7 @@ pub async fn upload_file(
     let config = upload.config;
     let input_kind = resolve_input_kind(&file_name, &media_type)?;
     let input = InputDocument::new(file_name.clone(), input_kind.media_type(), data);
-    let total_chunks =
-        total_chunks_for_input(&input, &config).unwrap_or_else(|_| match input_kind {
-            cloudiful_docling_convert::InputKind::Pdf => 0,
-            _ => 1,
-        });
+    let total_chunks = estimated_total_chunks_for_input(&input, &config);
 
     let task_id = state
         .create_task(file_name.clone(), config.clone(), total_chunks)

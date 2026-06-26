@@ -6,8 +6,8 @@ use cloudiful_docling_convert::{
 use super::super::state::{AppState, TaskConfig};
 use super::super::support::{create_docling_client, parse_output_format};
 use super::support::{
-    behavior_from_task_config, ensure_task_temp_dir, finalize_task_output, set_task_total_chunks,
-    total_chunks_for_input, update_chunk_progress, update_processing_status,
+    behavior_from_task_config, ensure_task_temp_dir, estimated_total_chunks_for_input,
+    finalize_task_output, set_task_total_chunks, update_chunk_progress, update_processing_status,
 };
 
 pub async fn process_file_conversion(
@@ -17,11 +17,7 @@ pub async fn process_file_conversion(
     config: TaskConfig,
 ) -> Result<(), PdfConvertError> {
     let input_kind = input.kind()?;
-    let total_chunks =
-        total_chunks_for_input(&input, &config).unwrap_or_else(|_| match input_kind {
-            InputKind::Pdf => 0,
-            _ => 1,
-        });
+    let total_chunks = estimated_total_chunks_for_input(&input, &config);
     if !set_task_total_chunks(&state, &task_id, total_chunks, input_kind.reading_label()).await {
         return Ok(());
     }

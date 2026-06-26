@@ -183,6 +183,20 @@ pub fn total_chunks_for_input(
     Ok(total.min(u32::MAX as usize) as u32)
 }
 
+pub fn estimated_total_chunks_for_input(input: &InputDocument, config: &TaskConfig) -> u32 {
+    match total_chunks_for_input(input, config) {
+        Ok(total) => total,
+        Err(error) => {
+            log::warn!(
+                "failed to precompute chunk count for '{}': {}; falling back to 1",
+                input.filename,
+                error
+            );
+            1
+        }
+    }
+}
+
 fn progress_from_chunks(completed_chunks: u32, total_chunks: u32) -> u8 {
     if total_chunks == 0 {
         return 10;

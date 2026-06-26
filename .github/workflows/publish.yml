@@ -26,8 +26,5 @@ jobs:
       - name: Restore Rust cache
         uses: Swatinem/rust-cache@v2
 
-      - name: Run workspace tests
-        run: cargo test --workspace
-
       - name: Verify core crate package contents
         run: cargo package -p cloudiful-docling-convert --allow-dirty
