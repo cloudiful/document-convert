@@ -1,0 +1,73 @@
+{
+  "app": {
+    "title": "PDF 转换器",
+    "description": "将 PDF 文件转换为 Markdown 或 JSON 格式"
+  },
+  "header": {
+    "settings": "设置"
+  },
+  "upload": {
+    "title": "上传文档",
+    "dragDrop": "拖拽 PDF、DOCX、Markdown 或文本文件到此处，或点击浏览",
+    "browse": "浏览文件",
+    "uploading": "上传中...",
+    "formats": "支持 PDF、DOCX、Markdown 和文本文件"
+  },
+  "url": {
+    "title": "从 URL 转换",
+    "placeholder": "输入 PDF 链接...",
+    "submit": "转换",
+    "converting": "转换中..."
+  },
+  "settings": {
+    "title": "设置",
+    "close": "关闭",
+    "format": "输出格式",
+    "formatMd": "Markdown",
+    "formatJson": "JSON",
+    "pagesPerFile": "每文件页数",
+    "batchSize": "批处理大小",
+    "splitInput": "拆分输入 PDF",
+    "splitOutput": "拆分输出文件",
+    "splitByBookmark": "按书签拆分",
+    "chunking": "启用分块"
+  },
+  "tasks": {
+    "title": "转换任务",
+    "empty": "暂无转换任务",
+    "emptyHint": "上传 PDF 或输入链接开始转换",
+    "status": {
+      "pending": "等待中",
+      "processing": "处理中",
+      "completed": "已完成",
+      "failed": "失败"
+    },
+    "progress": "进度",
+    "chunks": "个块",
+    "created": "创建时间",
+    "completed": "完成时间",
+    "download": "下载",
+    "delete": "删除"
+  },
+  "errors": {
+    "uploadFailed": "上传失败",
+    "conversionFailed": "转换失败",
+    "networkError": "网络错误"
+  },
+  "progress": {
+    "processing": "处理中",
+    "taskOf": "第 {current} 个任务，共 {total} 个",
+    "estimatedTime": "预计剩余时间",
+    "completed": "已完成",
+    "inProgress": "进行中"
+  },
+  "darkMode": {
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统"
+  },
+  "language": {
+    "en": "English",
+    "zh": "中文"
+  }
+}

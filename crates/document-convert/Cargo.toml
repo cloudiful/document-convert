@@ -1,0 +1,20 @@
+[package]
+name = "document-convert"
+version.workspace = true
+edition = "2024"
+description = "Core Rust library for Docling-backed document conversion"
+repository = "https://github.com/cloudiful/document-convert.git"
+publish = false
+
+[dependencies]
+bytes.workspace = true
+futures.workspace = true
+log.workspace = true
+lopdf.workspace = true
+reqwest = { workspace = true, features = ["json", "multipart"] }
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
+tokio = { workspace = true, features = [ "full" ] }
+
+[dev-dependencies]
+tempfile.workspace = true

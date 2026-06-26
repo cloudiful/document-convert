@@ -1,0 +1,7 @@
+/target
+.venv
+/output/
+log/
+.env
+.idea/
+Cargo.lock

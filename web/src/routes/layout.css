@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+:where(html.dark) body {
+  @apply bg-gray-900 text-gray-100;
+}
+
+:where(html.dark) .form-input,
+:where(html.dark) .form-select,
+:where(html.dark) .form-textarea {
+  @apply bg-gray-800 border-gray-600 text-gray-100;
+}
+
+:where(html.dark) .form-input:focus,
+:where(html.dark) .form-select:focus,
+:where(html.dark) .form-textarea:focus {
+  @apply border-blue-500 ring-blue-500;
+}
+
+:where(html.dark) .form-checkbox {
+  @apply bg-gray-800 border-gray-600;
+}
+
+:where(html.dark) ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+:where(html.dark) ::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}
+
+:where(html.dark) ::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-full;
+}
+
+:where(html.dark) ::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease !important;
+}
